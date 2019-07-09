@@ -25,6 +25,11 @@ class Scraper
         end
         breweries_array
     end
+
+    def self.get_brewery_page
+        self.collect_breweries.each do |brewery|
+            Nokogiri::HTML(open(brewery[:url]))
+            
             
 
 end
