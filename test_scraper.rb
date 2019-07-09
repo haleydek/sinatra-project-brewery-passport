@@ -1,4 +1,4 @@
 require 'bundler/setup'
 require './scraper'
 
-Scraper.collect_breweries
+Scraper.scrape_brewery_page
