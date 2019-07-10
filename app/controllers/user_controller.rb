@@ -15,6 +15,15 @@ class UserController < ApplicationController
         end
     end
 
+    get '/logout' do
+        if is_logged_in?
+            session.clear
+            redirect '/'
+        else
+            redirect '/breweries'
+        end
+    end
+
     post '/signup' do
         user = User.create(params[:id])
         session[:user_id] = user.id
