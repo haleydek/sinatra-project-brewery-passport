@@ -8,3 +8,9 @@ require 'sinatra/activerecord/rake'
 task :console do
   Pry.start
 end
+
+desc 'Show the current environment'
+task :env do
+  require 'sinatra'
+  puts Sinatra::Application.environment
+end
