@@ -1,4 +1,6 @@
 require 'bundler/setup'
 require './scraper'
 
-Scraper.scrape_brewery_page
+collection = Scraper.scrape_brewery_page
+binding.pry
+puts "gotcha"
