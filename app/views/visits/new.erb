@@ -1,10 +1,18 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <
+        <h1>Welcome, <%=@user.username%>!</h1>
     </head>
 
     <body>
-
+        <h3>Select all of the breweries you have already visited. Then, click 'Submit' to create your passport!<br>If you haven't visited any breweries yet, just click 'Submit' at the bottom of the page.</h3>
+        <br>
+        <form action='/create-passport' method='post'>
+            <% Brewery.all.each do |brewery| %>
+                <input type='checkbox' name='visit[brewery_ids][]' value='<%=brewery.id%>'>
+                <label><%=brewery.name%></label><br>
+            <% end %>
+            <input type='submit' value='Submit'>
+        </form>
     </body>
 </html>
