@@ -1,4 +1,7 @@
 class UserController < ApplicationController
+
+# add validation for username, password, and email to User class or db (unique index)
+
     get '/signup' do
         if is_logged_in?
             redirect '/breweries'
