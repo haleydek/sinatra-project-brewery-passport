@@ -28,8 +28,7 @@ class UserController < ApplicationController
     post '/signup' do
         user = User.create(params["user"])
         session[:user_id] = user.id
-        redirect '/'
-   #    add slug for username in route
+        redirect '/create-passport'
     end
 
     post '/login' do
