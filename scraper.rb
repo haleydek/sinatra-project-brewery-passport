@@ -5,7 +5,7 @@ require 'open-uri'
 
 
 class Scraper
-    BASEPATH = 'https://www.mncraftbrew.org/find-a-brewery'
+    BASEPATH = 'https://www.mncraftbrew.org/find-a-brewery/'
 
     def self.get_page
         Nokogiri::HTML(open(BASEPATH))
@@ -48,35 +48,39 @@ class Scraper
         if index.css("div.bt_bb_text p span.postal-code span.street-address").text != ""
             index.css("div.bt_bb_text p span.postal-code span.street-address").text.strip
         #3rd Act, Bobbing Bobber, Duluth Brewhouse, Waldman
-        elsif index.css("div.bt_bb_text div.address").text != ""
-            index.css("div.bt_bb_text div.address")[0].text.strip
-        #Drastic Measures
-        elsif index.css("div.bt_bb_text #block-9d227ccbe9b3ef52320a p").text != ""
-            address = index.css("div.bt_bb_text #block-9d227ccbe9b3ef52320a p .postal-code").text.strip.split("\n")
+        elsif index.css("div.bt_bb_text div.address").children[0] != nil
+            index.css("div.bt_bb_text div.address").children[0].text()
+        #The Lab, Torg
+        elsif index.css("div.bt_bb_text div.address div._2wzd div.address").children[0] != nil
+            address = index.css("div.bt_bb_text div.address div._2wzd div.address").children[1].text().strip.split(/\n/)
             address[0]
-        #Fitger's Beer, check Forager
+        #Drastic Measures, Angry Inch
+        elsif index.css("div.bt_bb_text #block-9d227ccbe9b3ef52320a p").text != ""
+            address = index.css("div.bt_bb_text #block-9d227ccbe9b3ef52320a p .postal-code").children[0].text().strip
+        #YES!!! ENKI, Fitger's Beer, Forager
         elsif index.css("div.bt_bb_text .LrzXr").text != ""
-            index.css("div.bt_bb_text .LrzXr").text.strip
+            index.css("div.bt_bb_text .LrzXr").children[0].text().strip
         else
             index.css("div.bt_bb_text p span.street-address").text.strip
         end
-    end
+    end   
 
     def self.scrape_city(index)
         if index.css("div.bt_bb_text p span.postal-code span.locality").text != ""
             index.css("div.bt_bb_text p span.postal-code span.locality").text.titleize.strip
         #3rd Act, Bobbing Bobber, Duluth Brewhouse, Waldman
-        elsif index.css("div.bt_bb_text div.address").text != ""
-            address = index.css("div.bt_bb_text div.address")[1].text.titleize.strip.split(",")
-            address[0]
-        #Drastic Measures
+        elsif index.css("div.bt_bb_text div.address").children[1] != nil
+            index.css("div.bt_bb_text div.address").children[1].text()
+        #The Lab, Torg
+        elsif index.css("div.bt_bb_text div.address div._2wzd div.address").children[1] != nil
+            address = index.css("div.bt_bb_text div.address div._2wzd div.address").children[1].text().strip.split(/\n/)
+            address[1]
+        #Drastic Measures, Duluth?
         elsif index.css("div.bt_bb_text #block-9d227ccbe9b3ef52320a p").text != ""
-            address = index.css("div.bt_bb_text #block-9d227ccbe9b3ef52320a p .postal-code").text.titleize.strip.split("\n")
-            address_array = address[1].split(",")
-            address_array.flatten[1]
-        #Fitger's Beer, check Forager
+            address = index.css("div.bt_bb_text #block-9d227ccbe9b3ef52320a p .postal-code").children[0].text().strip
+        #YES!!! ENKI, Fitger's Beer, Forager
         elsif index.css("div.bt_bb_text .LrzXr").text != ""
-            index.css("div.bt_bb_text .LrzXr").text.titleize.strip
+            index.css("div.bt_bb_text .LrzXr").children[2].text.titleize.strip
         else
             index.css("div.bt_bb_text p span.locality").text.titleize.strip
         end
