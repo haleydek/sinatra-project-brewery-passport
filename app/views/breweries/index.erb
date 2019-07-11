@@ -6,8 +6,8 @@
 
     <body>
         <ol>
-            <% @breweries.sort.each do |brewery| %>
-                <li><%= brewery.name %></li><br>
+            <% @breweries.each do |brewery| %>
+                <li><a href="/breweries/<%=brewery.id%>"><%= brewery.name %></a></li><br>
             <% end %>
         </ol>
     </body>

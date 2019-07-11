@@ -9,4 +9,14 @@ class BreweryController < ApplicationController
         end
     end
 
+    get '/breweries/:id' do
+        @brewery = Brewery.find(params[:id])
+        if is_logged_in?
+            erb :'/breweries/show'
+        else
+            redirect '/login'
+        end
+    # change route to slug for brewery name
+    end
+
 end
