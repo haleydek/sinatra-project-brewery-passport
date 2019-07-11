@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <h1>Explore the full list of MN breweries</h1>
+    </head>
+
+    <body>
+        <ol>
+            <% @breweries.sort.each do |brewery| %>
+                <li><%= brewery.name %></li><br>
+            <% end %>
+        </ol>
+    </body>
+</html>

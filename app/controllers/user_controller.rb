@@ -1,7 +1,5 @@
 class UserController < ApplicationController
 
-# add validation for username, password, and email to User class or db (unique index)
-
     get '/signup' do
         if is_logged_in?
             redirect '/breweries'
@@ -28,14 +26,14 @@ class UserController < ApplicationController
     end
 
     post '/signup' do
-        user = User.create(params[:id])
+        user = User.create(params["user"])
         session[:user_id] = user.id
         redirect '/'
    #    add slug for username in route
     end
 
     post '/login' do
-        user = User.find_by(username: params[:username])
+        user = User.find_by(email: params[:email])
 
         if is_logged_in?
             redirect '/breweries'
