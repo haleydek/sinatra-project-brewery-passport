@@ -5,12 +5,13 @@
     </head>
 
     <body>
-        <h3>Select all of the breweries you have already visited. Then, click 'Submit' to create your passport!<br>If you haven't visited any breweries yet, just click 'Submit' at the bottom of the page.</h3>
+        <h3>Select all of the breweries you have already visited. Then, click "Submit" to create your passport!<br>If you haven't visited any breweries yet, just click "Submit" at the bottom of the page.</h3>
         <br>
         <form action='/create-passport' method='post'>
             <% Brewery.all.each do |brewery| %>
+                <label for='<%=brewery.id%>'>
                 <input type='checkbox' name='visit[brewery_ids][]' value='<%=brewery.id%>'>
-                <label><%=brewery.name%></label><br>
+                <%=brewery.name%></label><br>
             <% end %>
             <input type='submit' value='Submit'>
         </form>

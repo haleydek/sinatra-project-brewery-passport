@@ -5,6 +5,13 @@
     </head>
 
     <body>
-    
+        <ol>
+            <% @user.breweries.each do |brewery| %>
+                <li><a href="/breweries/<%=brewery.id%>"><%= brewery.name %></a><br></li><br>
+            <% end %>
+        </ol>
+
+        <a href='/breweries'>View All Breweries</a><br>
+        <a href='/logout'>Log Out</a>
     </body>
 </html>

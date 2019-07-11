@@ -1,15 +1,15 @@
 class VisitController < ApplicationController
 
     get '/create-passport' do
-        @user = current_user
         if is_logged_in?
+            @user = current_user
             erb :'/visits/new'
         else
             redirect '/login'
         end
     end
 
-    get '/passport/:user_id'
+    get '/passport/:user_id' do
         if is_logged_in? && current_user
             @user = current_user
             erb :'/visits/show'

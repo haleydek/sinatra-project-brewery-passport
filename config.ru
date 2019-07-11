@@ -5,7 +5,7 @@ if ActiveRecord::Base.connection.migration_context.needs_migration?
 end
 
 use Rack::MethodOverride
-use BreweryController
 use UserController
 use VisitController
+use BreweryController
 run ApplicationController
