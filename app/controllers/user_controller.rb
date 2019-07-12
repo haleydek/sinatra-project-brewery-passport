@@ -28,7 +28,7 @@ class UserController < ApplicationController
     post '/signup' do
         user = User.create(params["user"])
         if !user.valid?
-            flash[:error] = user.errors.messages.each {|attribute, message| puts "#{message}"}
+            flash[:error] = user.errors.messages
             redirect '/signup'
         else
             session[:user_id] = user.id
