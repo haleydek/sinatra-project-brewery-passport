@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <h1>Edit <%=@user.username%>'s Passport</h1>
+    </head>
+
+    <body>
+        <h3>Add Breweries to Your Passport</h3>
+        <form action='/passport/<%=@user.id%>' method='post'>
+            <input type='hidden' id='hidden' name='_method' value='patch'>
+            
+            <% Brewery.all.each do |brewery| %>
+                <% if @user.breweries.find_by(id: brewery.id) == nil %>
+                    <label for='<%=brewery.name%>'><input type='checkbox' id='<%=brewery.name%>' name='visit[brewery_ids][]' value='<%=brewery.id%>'><%=brewery.name%></label><br>
+                <% end %>
+            <% end %>
+            <br>
+            <input type='submit' value='Add'>
+        </form>
+
+        <br><br>
+
+        <h3>Remove Breweries from Your Passport</h3>
+        <form action='/passport/<%=@user.id%>' method='post'>
+            <input type='hidden' id='hidden' name='_method' value='delete'>
+
+            <% @user.breweries.each do |brewery| %>
+                <label for='<%=brewery.name%>'><input type='checkbox' id='<%=brewery.name%>' name='visit[brewery_ids][]' value='<%=brewery.id%>'><%=brewery.name%></label><br>
+            <% end %>
+            <br>
+            <input type='submit' value='Remove'>
+        </form>
+    </body>
+</html>

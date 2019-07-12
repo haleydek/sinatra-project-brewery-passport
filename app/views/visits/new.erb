@@ -9,8 +9,8 @@
         <br>
         <form action='/create-passport' method='post'>
             <% Brewery.all.each do |brewery| %>
-                <label for='<%=brewery.id%>'>
-                <input type='checkbox' name='visit[brewery_ids][]' value='<%=brewery.id%>'>
+                <label for='<%=brewery.name%>'>
+                <input type='checkbox' id='<%=brewery.name%>' name='visit[brewery_ids][]' value='<%=brewery.id%>'>
                 <%=brewery.name%></label><br>
             <% end %>
             <input type='submit' value='Submit'>
