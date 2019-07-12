@@ -6,12 +6,12 @@
 
     <body>
         <ol>
-            <% @breweries.each do |brewery| %>
+            <% Brewery.all.each do |brewery| %>
                 <li><a href="/breweries/<%=brewery.id%>"><%= brewery.name %></a></li><br>
             <% end %>
         </ol>
 
-        <a href='/passport/<%=@user.id%>'>View Your Passport</a>
+        <a href='/passport/<%=@user.id%>'>View Your Passport</a><br>
         <a href='/passport/<%=@user.id%>/edit'>Edit Your Passport</a><br>
         <a href='/logout'>Log Out</a>
     </body>

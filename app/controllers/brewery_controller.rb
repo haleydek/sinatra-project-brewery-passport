@@ -1,7 +1,7 @@
 class BreweryController < ApplicationController
     get '/breweries' do
+        @user = current_user
         if is_logged_in?
-            @breweries = Brewery.all
             erb :'/breweries/index'
         else
             redirect '/login'
@@ -10,6 +10,7 @@ class BreweryController < ApplicationController
 
     get '/breweries/:id' do
         @brewery = Brewery.find(params[:id])
+        @user = current_user
         if is_logged_in?
             erb :'/breweries/show'
         else

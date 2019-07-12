@@ -14,8 +14,8 @@ class VisitController < ApplicationController
     end
 
     get '/passport/:user_id' do
+        @user = User.find_by(id: params[:user_id])
         if is_logged_in?
-            @user = User.find_by(id: params[:user_id])
             erb :'/visits/show'
         else
             redirect '/login'
@@ -25,7 +25,7 @@ class VisitController < ApplicationController
     get '/passport/:user_id/edit' do
         @user = User.find_by(id: params[:user_id])
         if is_logged_in?
-            if current_user.id == params[:user_id].to_i
+            if current_user.id == @user.id
                 erb :'/visits/edit'
             else
                 redirect '/breweries'
@@ -47,12 +47,13 @@ class VisitController < ApplicationController
     end
 
     patch '/passport/:user_id' do
+        @user = User.find_by(id: params[:user_id])
         if is_logged_in?
-            if current_user.id == params[:user_id].to_i
+            if current_user.id == @user.id
                 params[:visit][:brewery_ids].each do |brewery_id|
-                    Visit.where(user_id: current_user.id, brewery_id: brewery_id).first_or_create
+                    Visit.where(user_id: @user.id, brewery_id: brewery_id).first_or_create
                 end
-                redirect "/passport/#{current_user.id}"
+                redirect "/passport/#{@user.id}"
             else
                 redirect '/breweries'
             end
@@ -62,13 +63,14 @@ class VisitController < ApplicationController
     end
 
     delete '/passport/:user_id' do
+        @user = User.find_by(id: params[:user_id])
         if is_logged_in?
-            if current_user.id == params[:user_id].to_i
+            if current_user.id == @user.id
                 params[:visit][:brewery_ids].each do |brewery_id|
-                    visit = Visit.find_by(user_id: current_user.id, brewery_id: brewery_id)
+                    visit = Visit.find_by(user_id: @user.id, brewery_id: brewery_id)
                     visit.delete
                 end
-                redirect "/passport/#{current_user.id}"
+                redirect "/passport/#{@user.id}"
             else
                 redirect '/breweries'
             end

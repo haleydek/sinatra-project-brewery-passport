@@ -7,9 +7,9 @@
     <body>
         <%= @brewery.description %><br><br>
         <a href="<%=@brewery.url%>">Brewery's Website</a><br><br>
+    
+        <a href='/passport/<%=@user.id%>'>View Your Passport</a><br>
+        <a href='/passport/<%=@user.id%>/edit'>Edit Your Passport</a><br>
+        <a href='/logout'>Log Out</a>
     </body>
-
-    <a href='/passport/<%=@user.id%>'>View Your Passport</a>
-    <a href='/passport/<%=@user.id%>/edit'>Edit Your Passport</a><br>
-    <a href='/logout'>Log Out</a>
 </html>
