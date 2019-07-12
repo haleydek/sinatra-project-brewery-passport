@@ -27,8 +27,13 @@ class UserController < ApplicationController
 
     post '/signup' do
         user = User.create(params["user"])
-        session[:user_id] = user.id
-        redirect '/create-passport'
+        if !user.valid?
+            flash[:error] = user.errors.messages.each {|attribute, message| puts "#{message}"}
+            redirect '/signup'
+        else
+            session[:user_id] = user.id
+            redirect '/create-passport'
+        end
     end
 
     post '/login' do
