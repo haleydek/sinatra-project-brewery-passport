@@ -1,18 +1,17 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <h1>Explore the full list of MN breweries</h1>
-    </head>
+<nav>
+    <a href='/breweries'>Breweries</a>
+    <a href='/passport/<%=@user.id%>'>My Passport</a>
+    <a href='/passport/<%=@user.id%>/edit'>Edit Passport</a>
+    <a href='/logout'>Log Out</a>
+</nav>
 
-    <body>
+<main>
+    <section>
+        <h2>Explore MN breweries</h2>
         <ol>
             <% Brewery.all.each do |brewery| %>
                 <li><a href="/breweries/<%=brewery.id%>"><%= brewery.name %></a></li><br>
             <% end %>
         </ol>
-
-        <a href='/passport/<%=@user.id%>'>View Your Passport</a><br>
-        <a href='/passport/<%=@user.id%>/edit'>Edit Your Passport</a><br>
-        <a href='/logout'>Log Out</a>
-    </body>
-</html>
+    </section>
+</main>

@@ -1,15 +1,26 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <h1><%= @brewery.name %></h1>
-    </head>
+<nav>
+    <a href='/breweries'>Breweries</a>
+    <a href='/passport/<%=@user.id%>'>My Passport</a>
+    <a href='/passport/<%=@user.id%>/edit'>Edit Passport</a>
+    <a href='/logout'>Log Out</a>
+</nav>
 
-    <body>
-        <%= @brewery.description %><br><br>
-        <a href="<%=@brewery.url%>">Brewery's Website</a><br><br>
-    
-        <a href='/passport/<%=@user.id%>'>View Your Passport</a><br>
-        <a href='/passport/<%=@user.id%>/edit'>Edit Your Passport</a><br>
-        <a href='/logout'>Log Out</a>
-    </body>
-</html>
+<main>
+    <section>
+        <h2><%= @brewery.name %></h2>
+
+        <p><%= @brewery.description %></p>
+    </section>
+
+    <aside>
+        <h2>Additional Info</h2>
+
+        <a href="<%=@brewery.url%>">Brewery's Website</a>
+
+        <address>
+            <%=@brewery.street_address%>
+            <%=@brewery.city%>, <%=@brewery.state%><br><br>
+            <%=@brewery.phone%>
+        </address>
+    </aside>
+</main>
