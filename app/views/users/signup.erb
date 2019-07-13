@@ -1,23 +1,20 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <h1>Sign Up to Create Your MN Brewery Passport!</h1>
-    </head>
+<main>
+    <h2>Sign Up to Create Your MN Brewery Passport!</h2>
 
-    <body>
-        <form action='/signup' method='post'>
-            <label for='username'>Username: </label>    
-            <input type='text' id='username' name="user[username]"><br>
+    <form action='/signup' method='post'>
+        <label for='username'>Username: </label>    
+        <input type='text' id='username' name="user[username]"><br><br>
 
-            <label for='email'>Email: </label>    
-            <input type='text' id='email' name="user[email]"><br>
+        <label for='email'>Email: </label>    
+        <input type='text' id='email' name="user[email]"><br><br>
 
-            <label for='password'>Password: </label>    
-            <input type='password' id='password' name="user[password]"><br>
+        <label for='password'>Password: </label>    
+        <input type='password' id='password' name="user[password]"><br><br>
 
-            <input type='submit' value='Submit'>
-        </form>
-        <br>
-        <%= flash[:error] %>
-    </body>
-<html>
+        <input type='submit' value='Submit'>
+    </form>
+
+    <br><br>
+
+    <p class="flash-error"><%= flash[:error] %></p>
+</main>
