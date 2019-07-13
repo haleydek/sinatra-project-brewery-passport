@@ -19,6 +19,7 @@ class UserController < ApplicationController
     get '/logout' do
         if is_logged_in?
             session.clear
+            flash[:notice] = "Successfully logged out."
             redirect '/'
         else
             redirect '/breweries'
@@ -28,7 +29,7 @@ class UserController < ApplicationController
     post '/signup' do
         user = User.create(params["user"])
         if !user.valid?
-            flash[:error] = user.errors.messages
+            flash[:error] = user.errors.messages.values.join(" ")
             redirect '/signup'
         else
             session[:user_id] = user.id
@@ -38,13 +39,13 @@ class UserController < ApplicationController
 
     post '/login' do
         user = User.find_by(email: params[:email])
-
         if is_logged_in?
             redirect '/breweries'
         elsif user && user.authenticate(params[:password])
             session[:user_id] = user.id
             redirect '/breweries'
         else
+            flash[:error] = "Incorrect username and/or password. Please try again."
             redirect '/login'
         end
     end
