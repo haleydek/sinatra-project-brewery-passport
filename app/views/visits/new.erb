@@ -1,19 +1,22 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <h1>Welcome, <%=@user.username%>!</h1>
-    </head>
+<nav>
+    <a href='/breweries'>Breweries</a>
+    <a href='/passport/<%=@user.id%>'>My Passport</a>
+    <a href='/passport/<%=@user.id%>/edit'>Edit Passport</a>
+    <a href='/logout'>Log Out</a>
+</nav>
 
-    <body>
-        <h3>Select all of the breweries you have already visited. Then, click "Submit" to create your passport!<br>If you haven't visited any breweries yet, just click "Submit" at the bottom of the page.</h3>
+<main>
+    <h2>Welcome, <%=@user.username%>!</h2>
+
+    <h3>Select all of the breweries you have already visited. Then, click "Submit" to create your passport!<br>If you haven't visited any breweries yet, just click "Submit" at the bottom of the page.</h3><br>
+    
+    <form action='/create-passport' method='post'>
+        <% Brewery.all.each do |brewery| %>
+            <label for='<%=brewery.name%>'>
+            <input type='checkbox' id='<%=brewery.name%>' name='visit[brewery_ids][]' value='<%=brewery.id%>'>
+            <%=brewery.name%></label><br>
+        <% end %>
         <br>
-        <form action='/create-passport' method='post'>
-            <% Brewery.all.each do |brewery| %>
-                <label for='<%=brewery.name%>'>
-                <input type='checkbox' id='<%=brewery.name%>' name='visit[brewery_ids][]' value='<%=brewery.id%>'>
-                <%=brewery.name%></label><br>
-            <% end %>
-            <input type='submit' value='Submit'>
-        </form>
-    </body>
-</html>
+        <input type='submit' value='Submit'>
+    </form>
+</main>
