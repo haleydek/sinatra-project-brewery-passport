@@ -21,14 +21,6 @@ class ApplicationController < Sinatra::Base
         def current_user
             @current_user ||= User.find_by(id: session[:user_id])
         end
-
-        def self.get_error_messages
-            messages = []
-            self.errors.messages.each do |attribute, message|
-                messages << message
-            end
-            messages.join("\n")
-        end
     end
 
 end
