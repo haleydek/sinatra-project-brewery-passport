@@ -16,6 +16,19 @@ class UserController < ApplicationController
         end
     end
 
+    get '/passport/:id' do
+        @user = User.find_by(id: params[:id])
+        if is_logged_in?
+            if @user.id == current_user.id
+                erb :'/users/show'
+            else
+                redirect '/breweries'
+            end
+        else
+            redirect '/login'
+        end
+    end
+
     get '/logout' do
         if is_logged_in?
             session.clear
