@@ -5,26 +5,35 @@
     <a href='/logout'>Log Out</a>
 </nav>
 
-<main>
-    <section class='list'>
+<main class='brewery'>
+    <section class='brewery-index'>
         <h2><%= @brewery.name %></h2>
 
-        <p><%= @brewery.description %></p>
+        <p><%= @brewery.description %></p><br><br>
 
-        <form action='/create-visit' method='post'>
-            <input type='hidden' name='visit[brewery_id]' value='<%=@brewery.id%>'>
-            <input type='hidden' name='visit[user_id]' value='<%=@user.id%>'>
-            <input class='button' type='submit' value='Add to Passport'>
-        </form>
+        <% if @user.breweries.find_by(id: @brewery.id) %>
+            <form action='/breweries/<%=@brewery.id%>' method='post'>
+                <input type='hidden' id='hidden' name='_method' value='delete'>
+                <input type='hidden' name='visit[brewery_id]' value='<%=@brewery.id%>'>
+                <input type='hidden' name='visit[user_id]' value='<%=@user.id%>'>
+                <input class='button' type='submit' value='Remove from Passport'>
+            </form>
+        <% else %>
+            <form action='/breweries/<%=@brewery.id%>' method='post'>
+                <input type='hidden' name='visit[brewery_id]' value='<%=@brewery.id%>'>
+                <input type='hidden' name='visit[user_id]' value='<%=@user.id%>'>
+                <input class='button' type='submit' value='Add to Passport'>
+            </form>
+        <% end %>
     </section>
 
-    <aside>
+    <aside class='brewery-contacts'>
         <h3>Additional Info</h3>
 
-        <a href="<%=@brewery.url%>">Brewery's Website</a>
+        <a href="<%=@brewery.url%>">Brewery's Website</a><br><br>
 
         <address>
-            <%=@brewery.street_address%>
+            <%=@brewery.street_address%><br>
             <%=@brewery.city%>, <%=@brewery.state%><br><br>
             <%=@brewery.phone%>
         </address>
