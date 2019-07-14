@@ -28,7 +28,6 @@ class BreweryController < ApplicationController
                 redirect "/passport/#{@user.id}"
             else
                 redirect "/breweries"
-                #flash message that they can only edit their own passport
             end
         else
             redirect '/login'

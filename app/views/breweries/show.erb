@@ -12,6 +12,14 @@
         <p><%= @brewery.description %></p><br><br>
 
         <% if @user.breweries.find_by(id: @brewery.id) %>
+
+            <% visit = Visit.find_by(user_id: @user.id, brewery_id: @brewery.id) %>
+            <% if visit.rating %>
+                <p>You rated this brewery <%=visit.rating%> stars. EDIT MY RATING LINK</p>
+            <% else %>
+                <p>You haven't rated this brewery yet. RATE BREWERY LINK</p>
+            <% end %>
+
             <form action='/breweries/<%=@brewery.id%>' method='post'>
                 <input type='hidden' id='hidden' name='_method' value='delete'>
                 <input type='hidden' name='visit[brewery_id]' value='<%=@brewery.id%>'>

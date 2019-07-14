@@ -1,22 +1,13 @@
 class VisitController < ApplicationController
 
-    get '/create-passport' do
-        @user = current_user
-        if is_logged_in?
-            if @user.breweries == []
-                erb :'/visits/new'
-            else
-                redirect "/passport/#{current_user.id}"
-            end
-        else
-            redirect '/login'
-        end
-    end
-
     get '/passport/:user_id' do
         @user = User.find_by(id: params[:user_id])
         if is_logged_in?
-            erb :'/visits/show'
+            if @user.id == current_user.id
+                erb :'/visits/show'
+            else
+                redirect '/breweries'
+            end
         else
             redirect '/login'
         end
