@@ -87,3 +87,15 @@ nav a {
     box-sizing: border-box;
     cursor: pointer;    
 }
+
+.list {
+    color: black;
+    float: left;
+    margin-left: 30px;
+}
+
+.list h2 {
+    font-size: 32px;
+    color: black;
+    font-weight: bold;
+}
