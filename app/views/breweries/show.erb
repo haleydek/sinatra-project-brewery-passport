@@ -10,6 +10,12 @@
         <h2><%= @brewery.name %></h2>
 
         <p><%= @brewery.description %></p>
+
+        <form action='/create-visit' method='post'>
+            <input type='hidden' name='visit[brewery_id]' value='<%=@brewery.id%>'>
+            <input type='hidden' name='visit[user_id]' value='<%=@user.id%>'>
+            <input class='button' type='submit' value='Add to Passport'>
+        </form>
     </section>
 
     <aside>

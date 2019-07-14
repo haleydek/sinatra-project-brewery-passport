@@ -33,7 +33,7 @@ class UserController < ApplicationController
             redirect '/signup'
         else
             session[:user_id] = user.id
-            redirect '/create-passport'
+            redirect '/breweries'
         end
     end
 

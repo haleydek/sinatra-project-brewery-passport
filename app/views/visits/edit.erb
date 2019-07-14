@@ -6,38 +6,40 @@
 </nav>
 
 <main>
-    <h2>Edit <%=@user.username%>'s Passport</h2>
-    
-    <div class='edit-forms'>
+    <section class='edit'>
+        <h2>Edit <%=@user.username%>'s Passport</h2>
+        
+        <div class='edit-forms'>
 
-        <div class='column'>
-            <h3>Add Breweries</h3>
+            <div class='column'>
+                <h3>Add Breweries</h3>
 
-            <form action='/passport/<%=@user.id%>' method='post'>
-                <input type='hidden' id='hidden' name='_method' value='patch'>
-                
-                <% Brewery.all.each do |brewery| %>
-                    <% if @user.breweries.find_by(id: brewery.id) == nil %>
+                <form action='/passport/<%=@user.id%>' method='post'>
+                    <input type='hidden' id='hidden' name='_method' value='patch'>
+                    
+                    <% Brewery.all.each do |brewery| %>
+                        <% if @user.breweries.find_by(id: brewery.id) == nil %>
+                            <label for='<%=brewery.name%>'><input type='checkbox' id='<%=brewery.name%>' name='visit[brewery_ids][]' value='<%=brewery.id%>'><%=brewery.name%></label><br>
+                        <% end %>
+                    <% end %>
+                    <br>
+                    <input class='button' type='submit' value='Add'>
+                </form>
+            </div>
+
+            <div class='column'>
+                <h3>Remove Breweries</h3>
+
+                <form action='/passport/<%=@user.id%>' method='post'>
+                    <input type='hidden' id='hidden' name='_method' value='delete'>
+
+                    <% @user.breweries.each do |brewery| %>
                         <label for='<%=brewery.name%>'><input type='checkbox' id='<%=brewery.name%>' name='visit[brewery_ids][]' value='<%=brewery.id%>'><%=brewery.name%></label><br>
                     <% end %>
-                <% end %>
-                <br>
-                <input type='submit' value='Add'>
-            </form>
+                    <br>
+                    <input class='button' type='submit' value='Remove'>
+                </form>
+            </div>
         </div>
-
-        <div class='column'>
-            <h3>Remove Breweries</h3>
-            
-            <form action='/passport/<%=@user.id%>' method='post'>
-                <input type='hidden' id='hidden' name='_method' value='delete'>
-
-                <% @user.breweries.each do |brewery| %>
-                    <label for='<%=brewery.name%>'><input type='checkbox' id='<%=brewery.name%>' name='visit[brewery_ids][]' value='<%=brewery.id%>'><%=brewery.name%></label><br>
-                <% end %>
-                <br>
-                <input type='submit' value='Remove'>
-            </form>
-        </div>
-    </div>
+    </section>
 </main>
