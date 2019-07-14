@@ -25,7 +25,7 @@ class BreweryController < ApplicationController
         if is_logged_in?
             if @user.id == current_user.id
                 Visit.where(user_id: @user.id, brewery_id: @brewery.id).first_or_create
-                redirect "/passport/#{@user.id}"
+                redirect "/breweries/#{@brewery.id}"
             else
                 redirect "/breweries"
             end
@@ -45,6 +45,17 @@ class BreweryController < ApplicationController
             else
                 redirect '/breweries'
             end
+        else
+            redirect '/login'
+        end
+    end
+
+    patch '/breweries/:id' do
+        @brewery = Brewery.find_by(id: params[:id])
+        @visit = Visit.find_by(user_id: current_user.id, brewery_id: @brewery.id)
+        if is_logged_in?
+            @visit.update(rating: params[:rating])
+            redirect "/breweries/#{@brewery.id}"
         else
             redirect '/login'
         end

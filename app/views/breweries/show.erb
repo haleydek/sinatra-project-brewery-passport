@@ -9,15 +9,25 @@
     <section class='brewery-index'>
         <h2><%= @brewery.name %></h2>
 
-        <p><%= @brewery.description %></p><br><br>
+        <p><%= @brewery.description %></p><br>
 
         <% if @user.breweries.find_by(id: @brewery.id) %>
 
             <% visit = Visit.find_by(user_id: @user.id, brewery_id: @brewery.id) %>
             <% if visit.rating %>
-                <p>You rated this brewery <%=visit.rating%> stars. EDIT MY RATING LINK</p>
+                <div class='rating'>Your Rating: <%=visit.rating%> stars</div><br>
             <% else %>
-                <p>You haven't rated this brewery yet. RATE BREWERY LINK</p>
+                <div class='rating'>You haven't rated this brewery yet. What did you think?<br>
+                    <form action='/breweries/<%=@brewery.id%>' method='post'>
+                        <input type='hidden' id='hidden' name='_method' value='patch'>
+                        <label for='5 stars'><input type='radio' id='5 stars' name='rating' value='5'>5 stars</label><br>
+                        <label for='4 stars'><input type='radio' id='4 stars' name='rating' value='4'>4 stars</label><br>
+                        <label for='3 stars'><input type='radio' id='3 stars' name='rating' value='3'>3 stars</label><br>
+                        <label for='2 stars'><input type='radio' id='2 stars' name='rating' value='2'>2 stars</label><br>
+                        <label for='1 stars'><input type='radio' id='1 stars' name='rating' value='1'>1 stars</label><br>
+                        <input class='button' type='submit' value='Submit'>
+                    </form>
+                </div><br>
             <% end %>
 
             <form action='/breweries/<%=@brewery.id%>' method='post'>
