@@ -6,6 +6,5 @@ end
 
 use Rack::MethodOverride
 use UserController
-use VisitController
 use BreweryController
 run ApplicationController
