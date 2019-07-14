@@ -1,0 +1,16 @@
+<nav>
+    <a href='/breweries'>Breweries</a>
+    <a href='/passport/<%=@user.id%>'>My Passport</a>
+    <a href='/logout'>Log Out</a>
+</nav>
+
+<main>
+    <section class='list'>
+        <h2><%=@user.username%>'s Passport</h2>
+        <ol>
+            <% @user.breweries.each do |brewery| %>
+                <li><a href="/breweries/<%=brewery.id%>"><%= brewery.name %></a></li><br>
+            <% end %>
+        </ol>
+    </section>
+</main>
