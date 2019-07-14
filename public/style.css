@@ -48,7 +48,8 @@ main {
     display: inline-block;
     width: 250px;
     padding: 15px 32px;
-    margin: 10px;
+    margin-top: 50px;
+    margin-right: 20px;
     box-sizing: border-box;
     opacity: 0.8;
     transition: 0.3s;
@@ -59,14 +60,32 @@ main {
     opacity: 1;
 }
 
-.flash-notice {
+.flash {
     font-size: 18px;
     color: black;
     text-align: center;
+    align-content: center;
     display: block;
     padding: 15px 25px;
     margin: 10px;
     box-sizing: border-box;
+}
+
+.login-signup {
+    color: black;
+    width: auto;
+    padding: 50px;
+}
+
+.login-signup h2 {
+    margin-top: 0;
+    text-align: center;
+    align-content: center;
+}
+
+.login-signup form {
+    text-align: center;
+    align-content: center;
 }
 
 nav {

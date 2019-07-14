@@ -1,17 +1,19 @@
 <main>
-    <h2>Log In to View Your MN Brewery Passport!</h2>
+    <section class='login-signup'>
+        <h2>Log In to View Your MN Brewery Passport!</h2>
 
-    <form action='/login' method='post'>
-        <label for='email'>Email: </label>    
-        <input type='text' id='email' name="email"><br><br>
+        <form action='/login' method='post'>
+            <label for='email'>Email: </label>    
+            <input type='text' id='email' name="email"><br><br>
 
-        <label for='password'>Password: </label>    
-        <input type='password' id='password' name="password"><br><br>
+            <label for='password'>Password: </label>    
+            <input type='password' id='password' name="password"><br><br>
 
-        <input class='button' type='submit' value='Submit'>
-    </form>
+            <input class='button' type='submit' value='Submit'>
+        </form>
 
-    <br><br>
+        <br><br>
 
-    <p class="flash-error"><%= flash[:error] %></p>
+        <p class="flash"><%= flash[:error] %></p>
+    </section>
 </main>
