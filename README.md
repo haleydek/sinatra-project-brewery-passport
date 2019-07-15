@@ -1,6 +1,6 @@
 # sinatra-project-brewery-passport
 
-##Description
+## Description
 Track your progress in your virtual passport as you taste your way through all of Minnesota's craft breweries. Rate each brewery you visit with 1-5 stars (1 = worst, 5 = best).
 
 ## Install instructions
@@ -14,4 +14,4 @@ Track your progress in your virtual passport as you taste your way through all o
 Please fork this repo to add your own features, styling, etc. to the app.
 
 ## License
-[MIT License for this project](sinatra-project-brewery-passport/LICENSE.md)
+[MIT License for this project](docs/LICENSE.md)
