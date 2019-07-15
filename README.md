@@ -14,4 +14,4 @@ Track your progress in your virtual passport as you taste your way through all o
 Please fork this repo to add your own features, styling, etc. to the app.
 
 ## License
-[MIT License for this project](..blob/master/LICENSE)
+[MIT License for this project](../blob/master/LICENSE)
