@@ -3,7 +3,7 @@
 ## Description
 Track your progress in your virtual passport as you taste your way through all of Minnesota's craft breweries. Rate each brewery you visit with 1-5 stars (1 = worst, 5 = best).
 
-## Install instructions
+## Install Instructions
 1. Clone this repo via `git clone`
 2. Run `bundle install`
 3. Run `shotgun` to run the app on your server
