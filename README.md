@@ -8,10 +8,10 @@ Track your progress in your virtual passport as you taste your way through all o
 2. Run `bundle install`
 3. Run `shotgun` to run the app on your server
 4. Copy and paste the server address into a web browser to view and interact with the app
-5. To stop running the app on your server, enter CTRL-C into your terminal
+5. To stop running the app on your server, enter CTRL-C in your terminal
 
-##Contributors Guide
+## Contributors Guide
 Please fork this repo to add your own features, styling, etc. to the app.
 
 ## License
-[License for this project](./LICENSE.md)
+[MIT License for this project](sinatra-project-brewery-passport/LICENSE.md)
